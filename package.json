@@ -1,9 +1,9 @@
 {
   "name": "your-app-name",
   "version": "1.0.0",
-  "main": "api/index.js", // Đảm bảo trỏ đến tệp chính của bạn
+  "main": "api/bypass.js", // Đảm bảo trỏ đến tệp chính của bạn
   "scripts": {
-    "start": "node api/index.js" // Nếu bạn có tên tệp khác, thay đổi cho phù hợp
+    "start": "node api/bypass.js" // Nếu bạn có tên tệp khác, thay đổi cho phù hợp
   },
   "dependencies": {
     "axios": "^0.21.1",
