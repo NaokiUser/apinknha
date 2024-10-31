@@ -1,12 +1,17 @@
 {
-  "name": "your-app-name",
+  "name": "my-vercel-api",
   "version": "1.0.0",
-  "main": "api/bypass.js", // Đảm bảo trỏ đến tệp chính của bạn
+  "description": "A simple API to bypass URLs.",
+  "main": "api/bypass.js",
   "scripts": {
-    "start": "node api/bypass.js" // Nếu bạn có tên tệp khác, thay đổi cho phù hợp
+    "start": "node api/bypass.js"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "express": "^4.17.1"
-  }
+    "axios": "^0.27.2",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "license": "MIT"
 }
