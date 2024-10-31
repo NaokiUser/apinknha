@@ -44,6 +44,10 @@ module.exports = async (req, res) => {
             validUrl: /^https:\/\/linkvertise\.com\// // Chấp Nhận Url: https://linkvertise.com/
         },
         { 
+            endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${encodedUrl}&apikey=Triple_0H9BP72`,
+            validUrl: /^https:\/\/link-target\.net\// // Chấp Nhận Url: https://linkvertise.com/
+        },
+        { 
             endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${encodedUrl}`, // Thêm API mới
             validUrl: /^https:\/\/trigonevo\.fun\// // Chấp Nhận Url: https://trigonevo.fun/
         },
