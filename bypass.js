@@ -38,6 +38,10 @@ app.get('/api/bypass', async (req, res) => {
         { 
             endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${encodeURIComponent(url)}&apikey=Triple_0H9BP72`,
             validUrl: /^https:\/\/linkvertise\.com\// 
+        },
+        {
+            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${encodeURIComponent(url)}`
+            validUrl: /^https:\/\/trigonevo\.fun\// 
         }
     ];
 
