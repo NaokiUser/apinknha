@@ -9,7 +9,6 @@
   "routes": [
     {
       "src": "/api/bypass",
-      "methods": ["GET"],
       "dest": "api/bypass.js"
     }
   ]
