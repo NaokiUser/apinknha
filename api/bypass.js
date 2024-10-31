@@ -1,53 +1,54 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-    let { url } = req.query; // Đặt lại để có thể sửa đổi biến `url`
+    let { url } = req.query;  // Để tránh lỗi không tìm thấy biến url
 
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
     }
 
     // Tự động mã hóa URL nếu nó có dạng https://loot-link.com/
+    let encodedUrl = url;
     if (/^https:\/\/loot-link\.com/.test(url)) {
-        url = encodeURIComponent(url); // Mã hóa URL
+        encodedUrl = encodeURIComponent(url); // Mã hóa URL
     }
 
     // Danh sách các API cần gọi với điều kiện chấp nhận URL
     const apiEndpoints = [
         { 
-            endpoint: `https://keybypass.vercel.app/api/fluxus?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/fluxus?url=${encodedUrl}`,
             validUrl: /^https:\/\/flux\.li\// // Chấp Nhận Url: https://flux.li/
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/mboost?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/mboost?url=${encodedUrl}`,
             validUrl: /^https:\/\/mboost\.me/ // Chấp Nhận Url: https://mboost.me
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/paste_drop?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/paste_drop?url=${encodedUrl}`,
             validUrl: /^https:\/\/paste-drop\.com\// // Chấp Nhận Url: https://paste-drop.com/
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/mediafire?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/mediafire?url=${encodedUrl}`,
             validUrl: /^https:\/\/www\.mediafire\.com\// // Chấp Nhận Url: https://www.mediafire.com/
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/relzhub?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/relzhub?url=${encodedUrl}`,
             validUrl: /relzscript\.xyz/ // Chấp Nhận Url: relzscript.xyz
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/delta?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/delta?url=${encodedUrl}`,
             validUrl: /^https:\/\/gateway\.platoboost\.com/ // Chấp Nhận Url: https://gateway.platoboost.com
         },
         { 
-            endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${url}&apikey=Triple_0H9BP72`,
+            endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${encodedUrl}&apikey=Triple_0H9BP72`,
             validUrl: /^https:\/\/linkvertise\.com\// // Chấp Nhận Url: https://linkvertise.com/
         },
         { 
-            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${url}`,
+            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${encodedUrl}`, // Thêm API mới
             validUrl: /^https:\/\/trigonevo\.fun\// // Chấp Nhận Url: https://trigonevo.fun/
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/loot?url=${url}`,
+            endpoint: `https://keybypass.vercel.app/api/loot?url=${encodedUrl}`, // Thêm API loot
             validUrl: /^https:\/\/loot-link\.com\// // Chấp Nhận Url: https://loot-link.com/
         }
     ];
