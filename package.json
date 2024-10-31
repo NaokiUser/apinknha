@@ -5,7 +5,7 @@
   "main": "api/bypass.js",
   "scripts": {
     "start": "node api/bypass.js",
-    "dev": "nodemon api/bypass.js" // Lệnh để phát triển
+    "dev": "vercel dev"  // Thêm lệnh này để phát triển cục bộ
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -14,8 +14,5 @@
   "engines": {
     "node": "16.x"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^2.0.22" // Thêm nodemon để tự động khởi động lại server khi có thay đổi
-  }
+  "license": "MIT"
 }
