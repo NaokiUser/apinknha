@@ -1,13 +1,12 @@
 {
-  "name": "my-api-project",
+  "name": "your-app-name",
   "version": "1.0.0",
-  "description": "An Express API for bypassing URLs",
-  "main": "api/bypass.js",
+  "main": "api/index.js", // Đảm bảo trỏ đến tệp chính của bạn
   "scripts": {
-    "start": "node api/bypass.js"
+    "start": "node api/index.js" // Nếu bạn có tên tệp khác, thay đổi cho phù hợp
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "express": "^4.18.2"
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
   }
 }
