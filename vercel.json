@@ -1,1 +1,15 @@
-touch vercel.json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/bypass.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/bypass",
+      "dest": "api/bypass.js"
+    }
+  ]
+}
