@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-    let { url } = req.query;  // Để tránh lỗi không tìm thấy biến url
+    let { url } = req.query;  // Đảm bảo lấy đúng giá trị từ query
 
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
