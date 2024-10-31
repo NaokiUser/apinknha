@@ -11,39 +11,39 @@ app.get('/api/bypass', async (req, res) => {
     }
 
     const apiEndpoints = [
-        { 
-            endpoint: `https://keybypass.vercel.app/api/fluxus?url=${encodeURIComponent(url)}`,
-            validUrl: /^https:\/\/flux\.li\// 
-        },
-        { 
-            endpoint: `https://keybypass.vercel.app/api/mboost?url=${encodeURIComponent(url)}`,
-            validUrl: /^https:\/\/mboost\.me/ 
-        },
-        { 
-            endpoint: `https://keybypass.vercel.app/api/paste_drop?url=${encodeURIComponent(url)}`,
-            validUrl: /^https:\/\/paste-drop\.com\// 
-        },
-        { 
-            endpoint: `https://keybypass.vercel.app/api/mediafire?url=${encodeURIComponent(url)}`,
-            validUrl: /^https:\/\/www\.mediafire\.com\// 
-        },
-        { 
-            endpoint: `https://keybypass.vercel.app/api/relzhub?url=${encodeURIComponent(url)}`,
-            validUrl: /relzscript\.xyz/ 
-        },
-        { 
-            endpoint: `https://keybypass.vercel.app/api/delta?url=${encodeURIComponent(url)}`,
-            validUrl: /^https:\/\/gateway\.platoboost\.com/ 
-        },
-        { 
-            endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${encodeURIComponent(url)}&apikey=Triple_0H9BP72`,
-            validUrl: /^https:\/\/linkvertise\.com\// 
-        },
-        {
-            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${encodeURIComponent(url)}`
-            validUrl: /^https:\/\/trigonevo\.fun\// 
-        }
-    ];
+    { 
+        endpoint: `https://keybypass.vercel.app/api/fluxus?url=${encodeURIComponent(url)}`,
+        validUrl: /^https:\/\/flux\.li\// 
+    },
+    { 
+        endpoint: `https://keybypass.vercel.app/api/mboost?url=${encodeURIComponent(url)}`,
+        validUrl: /^https:\/\/mboost\.me/ 
+    },
+    { 
+        endpoint: `https://keybypass.vercel.app/api/paste_drop?url=${encodeURIComponent(url)}`,
+        validUrl: /^https:\/\/paste-drop\.com\// 
+    },
+    { 
+        endpoint: `https://keybypass.vercel.app/api/mediafire?url=${encodeURIComponent(url)}`,
+        validUrl: /^https:\/\/www\.mediafire\.com\// 
+    },
+    { 
+        endpoint: `https://keybypass.vercel.app/api/relzhub?url=${encodeURIComponent(url)}`,
+        validUrl: /relzscript\.xyz/ 
+    },
+    { 
+        endpoint: `https://keybypass.vercel.app/api/delta?url=${encodeURIComponent(url)}`,
+        validUrl: /^https:\/\/gateway\.platoboost\.com/ 
+    },
+    { 
+        endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${encodeURIComponent(url)}&apikey=Triple_0H9BP72`,
+        validUrl: /^https:\/\/linkvertise\.com\//
+    },
+    {
+        endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${encodeURIComponent(url)}`, // Thêm dấu phẩy ở đây
+        validUrl: /^https:\/\/trigonevo\.fun\//
+    }
+];
 
     const validEndpoints = apiEndpoints.filter(api => api.validUrl.test(url));
 
