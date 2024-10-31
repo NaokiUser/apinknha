@@ -4,8 +4,7 @@
   "description": "A simple API to bypass URLs.",
   "main": "api/bypass.js",
   "scripts": {
-    "start": "node api/bypass.js",
-    "dev": "vercel dev"  // Thêm lệnh này để phát triển cục bộ
+    "start": "node api/bypass.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
