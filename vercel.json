@@ -1,9 +1,16 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/bypass.js", "use": "@vercel/node" }
+    {
+      "src": "api/bypass.js",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
-    { "src": "/api/bypass", "dest": "api/bypass.js" }
+    {
+      "src": "/api/bypass",
+      "methods": ["GET"],
+      "dest": "api/bypass.js"
+    }
   ]
 }
