@@ -1,9 +1,8 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-    const { url } = req.query;
+    let { url } = req.query; // Sử dụng let để có thể gán lại giá trị
 
-    // Kiểm tra URL có được cung cấp không
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
     }
