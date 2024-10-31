@@ -1,15 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/bypass.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
-      "src": "/api/bypass",
-      "dest": "api/bypass.js"
+      "src": "/api/(.*)",
+      "dest": "/api/index.js" // Thay index.js bằng tên tệp chính của bạn
     }
   ]
 }
