@@ -1,0 +1,13 @@
+{
+  "name": "my-api-project",
+  "version": "1.0.0",
+  "description": "An Express API for bypassing URLs",
+  "main": "api/bypass.js",
+  "scripts": {
+    "start": "node api/bypass.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.2"
+  }
+}
