@@ -4,7 +4,8 @@
   "description": "A simple API to bypass URLs.",
   "main": "api/bypass.js",
   "scripts": {
-    "start": "node api/bypass.js"
+    "start": "node api/bypass.js",
+    "dev": "nodemon api/bypass.js" // Lệnh để phát triển
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -13,5 +14,8 @@
   "engines": {
     "node": "16.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.22" // Thêm nodemon để tự động khởi động lại server khi có thay đổi
+  }
 }
