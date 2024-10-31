@@ -1,6 +1,37 @@
-const axios = require('axios');
+// api/bypass.js
+const fetch = require('node-fetch');
 
-module.exports = async (req, res) => {
+async function getBypassResult(url) {
+    try {
+        // Mã hóa URL và gửi yêu cầu đến API
+        const apiUrl = `https://keybypass.vercel.app/api/loot?url=${encodeURIComponent(url)}`;
+        const response = await fetch(apiUrl);
+
+        // Kiểm tra xem phản hồi có thành công không
+        if (!response.ok) throw new Error("API Offline Or Unsupported Link");
+
+        // Phân tích phản hồi JSON
+        const data = await response.json();
+
+        // Tạo đối tượng kết quả để trả về
+        return {
+            description: {
+                fields: [
+                    { name: "Result (PC)", value: `\`${data.result}\``, inline: false },
+                    { name: "Result (Mobile)", value: data.result, inline: false }
+                ]
+            },
+            footer: { text: "Made By ⚡Bypass Key⚡ Team" },
+            timestamp: new Date(),
+            color: "#6400ff"
+        };
+    } catch (error) {
+        // Trả về lỗi nếu có
+        return { content: error.message };
+    }
+}
+
+export default async function handler(req, res) {
     const { url } = req.query;
 
     if (!url) {
@@ -16,46 +47,45 @@ module.exports = async (req, res) => {
     const apiEndpoints = [
         { 
             endpoint: `https://keybypass.vercel.app/api/fluxus?url=${url}`,
-            validUrl: /^https:\/\/flux\.li\// // Chấp Nhận Url: https://flux.li/
+            validUrl: /^https:\/\/flux\.li\// 
         },
         { 
             endpoint: `https://keybypass.vercel.app/api/mboost?url=${url}`,
-            validUrl: /^https:\/\/mboost\.me/ // Chấp Nhận Url: https://mboost.me
+            validUrl: /^https:\/\/mboost\.me/ 
         },
         { 
             endpoint: `https://keybypass.vercel.app/api/paste_drop?url=${url}`,
-            validUrl: /^https:\/\/paste-drop\.com\// // Chấp Nhận Url: https://paste-drop.com/
+            validUrl: /^https:\/\/paste-drop\.com\// 
         },
         { 
             endpoint: `https://keybypass.vercel.app/api/mediafire?url=${url}`,
-            validUrl: /^https:\/\/www\.mediafire\.com\// // Chấp Nhận Url: https://www.mediafire.com/
+            validUrl: /^https:\/\/www\.mediafire\.com\// 
         },
         { 
             endpoint: `https://keybypass.vercel.app/api/relzhub?url=${url}`,
-            validUrl: /relzscript\.xyz/ // Chấp Nhận Url: relzscript.xyz
+            validUrl: /relzscript\.xyz/ 
         },
         { 
             endpoint: `https://keybypass.vercel.app/api/delta?url=${url}`,
-            validUrl: /^https:\/\/gateway\.platoboost\.com/ // Chấp Nhận Url: https://gateway.platoboost.com
+            validUrl: /^https:\/\/gateway\.platoboost\.com/ 
         },
         { 
             endpoint: `https://prince-mysticmoth-api.vercel.app/api/linkvertise?link=${url}&apikey=Triple_0H9BP72`,
-            validUrl: /^https:\/\/linkvertise\.com\// // Chấp Nhận Url: https://linkvertise.com/
+            validUrl: /^https:\/\/linkvertise\.com\// 
         },
         { 
-            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${url}`, // Thêm API mới
-            validUrl: /^https:\/\/trigonevo\.fun\// // Chấp Nhận Url: https://trigonevo.fun/
+            endpoint: `http://de01-3.uniplex.xyz:5743/trigon?url=${url}`,
+            validUrl: /^https:\/\/trigonevo\.fun\// 
         },
         { 
-            endpoint: `https://keybypass.vercel.app/api/loot?url=${url}`, // Thêm API loot
-            validUrl: /^https:\/\/loot-link\.com\// // Chấp Nhận Url: https://loot-link.com/
+            endpoint: `https://keybypass.vercel.app/api/loot?url=${url}`,
+            validUrl: /^https:\/\/loot-link\.com\// 
         }
     ];
 
     // Tạo danh sách các API hợp lệ
     const validEndpoints = apiEndpoints.filter(api => api.validUrl.test(url));
 
-    // Kiểm tra xem có API hợp lệ không
     if (validEndpoints.length === 0) {
         return res.status(400).json({ error: 'Invalid URL for any API' });
     }
@@ -65,8 +95,11 @@ module.exports = async (req, res) => {
         const results = await Promise.all(
             validEndpoints.map(async (api) => {
                 try {
-                    const response = await axios.get(api.endpoint);
-                    return response.data; // Giả sử dữ liệu trả về có key hoặc result
+                    const response = await fetch(api.endpoint);
+                    if (!response.ok) throw new Error("API Offline Or Unsupported Link");
+
+                    const data = await response.json();
+                    return data; // Giả sử dữ liệu trả về có key hoặc result
                 } catch (error) {
                     console.error(`Error fetching from ${api.endpoint}:`, error.message);
                     return null; // Nếu có lỗi, trả về null
@@ -78,7 +111,9 @@ module.exports = async (req, res) => {
         const key = results.map(result => result?.key || result?.result).find(value => value);
 
         if (key) {
-            return res.json({ key }); // Trả về key hoặc result đầu tiên tìm được
+            // Gọi hàm getBypassResult nếu có key
+            const bypassResult = await getBypassResult(url);
+            return res.json(bypassResult);
         } else {
             return res.status(404).json({ error: 'No keys found' });
         }
@@ -87,4 +122,4 @@ module.exports = async (req, res) => {
         console.error('Error:', error.message);
         return res.status(500).json({ error: 'Internal server error' });
     }
-};
+}
